@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<updates>
+    <update version="1.0.0">
+        <files>
+            <file path="Components/LiveSplit.Evergate.dll" status="changed"/>
+        </files>
+        <changelog>
+            <change> Initial Release, this auto splitter is based on DevilSquirrels auto splitter OriWotW. Credit to DevilSquirrel for allowing me to it as a base. </change>
+        </changelog>
+    </update>
+</updates>

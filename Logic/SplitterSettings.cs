@@ -1,0 +1,19 @@
+﻿using System.ComponentModel;
+
+namespace LiveSplit.Evergate {
+    public class SplitterSettings {
+        public BindingList<Split> Autosplits = new BindingList<Split>();
+        public bool NoPause;
+        public bool DisableDebug;
+        public bool UseRaceTime;
+
+        public SplitterSettings() {
+            Autosplits.AllowNew = true;
+            Autosplits.AllowRemove = true;
+            Autosplits.AllowEdit = true;
+            NoPause = false;
+            DisableDebug = false;
+            UseRaceTime = false;
+        }
+    }
+}
