@@ -1,5 +1,4 @@
-﻿using System;
-namespace LiveSplit.Evergate.Il2Cpp {
+﻿namespace LiveSplit.Evergate.Il2Cpp {
     public enum SearchSectionType {
         Exec,
         Data,

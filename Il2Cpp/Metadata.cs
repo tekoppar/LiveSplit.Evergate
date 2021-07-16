@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 namespace LiveSplit.Evergate.Il2Cpp {
     public sealed class Metadata : BinaryStream {
         private Il2CppGlobalMetadataHeader metadataHeader;

@@ -20,7 +20,7 @@ namespace LiveSplit.Evergate {
         public List<LevelSelectInfo> levelInfos;
 
         public LevelSelectBehavior() {
-            
+
         }
 
         public LevelSelectBehavior(string name, string subtitle, List<LevelSelectInfo> list) {

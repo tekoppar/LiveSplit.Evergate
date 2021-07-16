@@ -1,9 +1,9 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
-using System.ComponentModel;
 using Tem.TemClass;
 
 namespace LiveSplit.Evergate {
@@ -98,7 +98,7 @@ namespace LiveSplit.Evergate {
                     return;
                 }
             }
-            
+
 
             float FPS = Memory.FPS();
             int frameCount = Memory.FrameCount;

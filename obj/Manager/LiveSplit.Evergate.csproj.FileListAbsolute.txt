@@ -13,4 +13,3 @@ H:\evergate dump\EverGate Autosplitter\EvergateLiveSplit\obj\Manager\LiveSplit.E
 H:\evergate dump\EverGate Autosplitter\EvergateLiveSplit\obj\Manager\LiveSplit.Evergate.csproj.CopyComplete
 H:\evergate dump\EverGate Autosplitter\EvergateLiveSplit\obj\Manager\LiveSplit.Evergate.exe
 H:\evergate dump\EverGate Autosplitter\EvergateLiveSplit\obj\Manager\LiveSplit.Evergate.pdb
-H:\evergate dump\EverGate Autosplitter\EvergateLiveSplit\obj\Manager\LiveSplit.Evergate.csproj.AssemblyReference.cache

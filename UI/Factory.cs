@@ -1,9 +1,9 @@
-﻿using LiveSplit.Model;
-using LiveSplit.UI.Components;
-using System;
+﻿using System;
 using System.Globalization;
 using System.Reflection;
 using System.Threading;
+using LiveSplit.Model;
+using LiveSplit.UI.Components;
 namespace LiveSplit.Evergate {
     public class Factory : IComponentFactory {
         public static string AutosplitterName = "Ori Will of the Wisps Autosplitter";

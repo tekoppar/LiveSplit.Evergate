@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Windows.Forms;
-namespace LiveSplit.Evergate {
+﻿namespace LiveSplit.Evergate {
 #if Console
     public interface IComponentFactory { }
     public class ComponentCategory {

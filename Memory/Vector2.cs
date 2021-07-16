@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Runtime.InteropServices;
 using System.Globalization;
+using System.Runtime.InteropServices;
 
-namespace Tem.TemClass
-{
+namespace Tem.TemClass {
     [StructLayout(LayoutKind.Explicit, Size = 8, Pack = 1)]
     public struct Vector2 {
         [FieldOffset(0)]

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using LiveSplit.Options;
 using Tem.TemClass;
 
 namespace LiveSplit.Evergate {
@@ -106,7 +105,7 @@ namespace LiveSplit.Evergate {
             }
         }
 
-        private void CheckSplit(Split split, bool updateValues) {            
+        private void CheckSplit(Split split, bool updateValues) {
             Paused = Memory.IsLoadingGame();
             if (IsHooked() == false || Paused)
                 return;
@@ -127,7 +126,7 @@ namespace LiveSplit.Evergate {
                     previousScene = lastSceneValue;
 
                 lastSceneValue = CurrentScene;
-                
+
                 if (!updateValues && Paused) {
                     return;
                 }
@@ -198,7 +197,7 @@ namespace LiveSplit.Evergate {
             SplitLevel level = Utility.GetEnumValue<SplitLevel>(split.Value);
             List<string> levels = Memory.GetVisitedLevels();
             string sceneName = Memory.GetSceneName();
-            
+
             if (LUT.LevelLUT.ContainsKey((int)level) == true && lastStrValue != null) {
                 foreach (string s in levels) {
                     if (s == LUT.LevelLUT[(int)level]) {

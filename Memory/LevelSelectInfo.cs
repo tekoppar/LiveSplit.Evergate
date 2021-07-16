@@ -25,7 +25,7 @@ namespace LiveSplit.Evergate {
         public bool initialized;
 
         public LevelSelectInfo() {
-            
+
         }
 
         public LevelSelectInfo(LevelSelectInfoPtr ptr, string sceneName, string levelLabel) {

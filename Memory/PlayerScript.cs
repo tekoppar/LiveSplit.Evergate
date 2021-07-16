@@ -1,5 +1,4 @@
-﻿using System;
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
 using Tem.TemClass;
 
 namespace LiveSplit.Evergate {
@@ -100,7 +99,7 @@ namespace LiveSplit.Evergate {
 
         public PlayerScript() { }
 
-        public PlayerScript(PlayerScriptPtr ptr, bool canJump){
+        public PlayerScript(PlayerScriptPtr ptr, bool canJump) {
             this.currPos = ptr.currPos;
             this.prevPos = ptr.prevPos;
             this.currVel = ptr.currVel;
