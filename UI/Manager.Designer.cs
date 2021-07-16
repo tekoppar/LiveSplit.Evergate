@@ -156,7 +156,6 @@
             this.Controls.Add(this.lblNote);
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Icon = global::LiveSplit.Evergate.Properties.Resources.evergate;
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.Name = "Manager";

@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{B3294E28-2BD4-4E39-92FA-E04A620C7E7F}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>LiveSplit.Evergate</RootNamespace>
     <AssemblyName>LiveSplit.Evergate</AssemblyName>
@@ -20,7 +20,7 @@
     <Optimize>false</Optimize>
     <OutputPath>bin\</OutputPath>
     <OutputType>Library</OutputType>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;Debug</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
@@ -57,24 +57,24 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Resources\evergate.ico</ApplicationIcon>
+    <ApplicationIcon>evergate.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Manager|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\</OutputPath>
     <OutputType>WinExe</OutputType>
-    <DefineConstants>TRACE;DEBUG;Console;Manager</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;Manager</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <LangVersion>7.3</LangVersion>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <Optimize>false</Optimize>
+    <Optimize>true</Optimize>
     <Prefer32Bit>false</Prefer32Bit>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="LiveSplit.Core">
@@ -87,7 +87,6 @@
     </Reference>
     <Reference Include="LiveSplit.View">
       <HintPath>C:\Users\Tekoppar\Desktop\Livesplit\LiveSplit.View.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -133,11 +132,6 @@
     <Compile Include="Memory\ProgramPointer.cs" />
     <Compile Include="Memory\Vector3.cs" />
     <Compile Include="Memory\Vector4.cs" />
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
     <Compile Include="UI\Component.cs" />
     <Compile Include="UI\Factory.cs" />
     <Compile Include="Memory\MemoryManager.cs" />
@@ -181,11 +175,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Components\Updates.xml" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Resources\evergate.ico" />
+    <Content Include="evergate.ico" />
     <None Include="README.md" />
     <None Include="Resources\save.png" />
   </ItemGroup>

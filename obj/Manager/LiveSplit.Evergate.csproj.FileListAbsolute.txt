@@ -1,8 +1,3 @@
-H:\evergate dump\EverGate Autosplitter\EvergateLiveSplit\bin\LiveSplit.Evergate.exe
-H:\evergate dump\EverGate Autosplitter\EvergateLiveSplit\bin\LiveSplit.Evergate.pdb
-H:\evergate dump\EverGate Autosplitter\EvergateLiveSplit\bin\LiveSplit.View.dll
-H:\evergate dump\EverGate Autosplitter\EvergateLiveSplit\bin\Microsoft.WindowsAPICodePack.Shell.dll
-H:\evergate dump\EverGate Autosplitter\EvergateLiveSplit\bin\Microsoft.WindowsAPICodePack.dll
 H:\evergate dump\EverGate Autosplitter\EvergateLiveSplit\obj\Manager\LiveSplit.Evergate.Properties.Resources.resources
 H:\evergate dump\EverGate Autosplitter\EvergateLiveSplit\obj\Manager\LiveSplit.Evergate.LogViewer.resources
 H:\evergate dump\EverGate Autosplitter\EvergateLiveSplit\obj\Manager\LiveSplit.Evergate.Manager.resources
@@ -10,6 +5,11 @@ H:\evergate dump\EverGate Autosplitter\EvergateLiveSplit\obj\Manager\LiveSplit.E
 H:\evergate dump\EverGate Autosplitter\EvergateLiveSplit\obj\Manager\LiveSplit.Evergate.UserSettings.resources
 H:\evergate dump\EverGate Autosplitter\EvergateLiveSplit\obj\Manager\LiveSplit.Evergate.csproj.GenerateResource.cache
 H:\evergate dump\EverGate Autosplitter\EvergateLiveSplit\obj\Manager\LiveSplit.Evergate.csproj.CoreCompileInputs.cache
+H:\evergate dump\EverGate Autosplitter\EvergateLiveSplit\bin\LiveSplit.Evergate.exe
+H:\evergate dump\EverGate Autosplitter\EvergateLiveSplit\bin\LiveSplit.Evergate.pdb
+H:\evergate dump\EverGate Autosplitter\EvergateLiveSplit\bin\LiveSplit.View.dll
+H:\evergate dump\EverGate Autosplitter\EvergateLiveSplit\bin\Microsoft.WindowsAPICodePack.Shell.dll
+H:\evergate dump\EverGate Autosplitter\EvergateLiveSplit\bin\Microsoft.WindowsAPICodePack.dll
 H:\evergate dump\EverGate Autosplitter\EvergateLiveSplit\obj\Manager\LiveSplit.Evergate.csproj.CopyComplete
 H:\evergate dump\EverGate Autosplitter\EvergateLiveSplit\obj\Manager\LiveSplit.Evergate.exe
 H:\evergate dump\EverGate Autosplitter\EvergateLiveSplit\obj\Manager\LiveSplit.Evergate.pdb

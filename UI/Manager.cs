@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Drawing;
 using System.Reflection;
 using System.Threading;
@@ -68,25 +67,7 @@ namespace LiveSplit.Evergate {
                 Thread.Sleep(7);
             }
         }
-        protected override void OnClosing(CancelEventArgs e) {
-            if (Manager.DESTROY == true) {
-                base.OnClosing(e);
-                return;
-            }
 
-            Manager.DESTROY = true;
-            while (this.timerLoop.IsAlive && this.timerLoop.Name != null) {
-
-            }
-
-            this.timerLoop = null;
-            e.Cancel = true;
-            CloseShit();
-        }
-
-        private void CloseShit() {
-            this.Close();
-        }
         public void UpdateValues() {
             if (Manager.DESTROY == true || this.Disposing) { return; }
 
