@@ -26,11 +26,10 @@ namespace LiveSplit.Evergate {
         private bool lastBoolValue = true;
         private bool hadDebug;
         private int lastIntValue, lastIntValue2;
-        private string lastStrValue, lastSceneValue;
+        private string lastStrValue;
         private DateTime splitLate;
-        private string LastScene = "";
-        private bool hasTriggeredEnding = false;
-        private string previousScene, CurrentScene = null;
+        private string CurrentScene = null;
+        private State PreviousState = State.NONE;
 
         public LogicManager(SplitterSettings settings) {
             Memory = new MemoryManager();
@@ -58,9 +57,6 @@ namespace LiveSplit.Evergate {
             Running = true;
             splitLate = DateTime.MaxValue;
             CurrentSplit++;
-
-            lastBoolValue = false;
-            lastStrValue = lastSceneValue = null;
 
             InitializeSplit();
         }
@@ -111,26 +107,14 @@ namespace LiveSplit.Evergate {
                 return;
 
             ShouldSplit = false;
+            HUDManager hudManager = Memory.GetHUDManager();
             CurrentScene = Memory.GetSceneName();
             if (split.Type == SplitType.GameStart) {
                 SaveSlot save = Memory.GetSaveSlot();
-                ShouldSplit = !lastBoolValue && save.newGame && lastSceneValue == "main_menu";
+                ShouldSplit = !lastBoolValue && save.newGame && hudManager.state == State.MAIN_MENU;
                 lastBoolValue = save.newGame;
-
-                if (CurrentScene != lastSceneValue)
-                    previousScene = lastSceneValue;
-
-                lastSceneValue = CurrentScene;
-            } else {
-                if (CurrentScene != lastSceneValue)
-                    previousScene = lastSceneValue;
-
-                lastSceneValue = CurrentScene;
-
-                if (!updateValues && Paused) {
-                    return;
-                }
-
+                PreviousState = hudManager.state;
+            } else if (updateValues && !Paused && hudManager.state == State.IN_GAME) {
                 switch (split.Type) {
                     case SplitType.ManualSplit:
                         break;
@@ -148,14 +132,7 @@ namespace LiveSplit.Evergate {
                         CheckHitboxSplit(hitbox);
                         break;
                     case SplitType.GameEnd:
-                        bool finished = Memory.FinishedGame();
-                        lastBoolValue = ShouldSplit = finished && !lastBoolValue && CurrentScene == "prod-hub-1" && hasTriggeredEnding == true;
-
-                        if (previousScene == "prod-v1-4" && hasTriggeredEnding == false)
-                            hasTriggeredEnding = CheckHitbox(new Vector4(245f, 160f, 40f, 10f));
-                        else if (previousScene != "prod-b1-2" && CurrentScene != "prod-b1-2") {
-                            hasTriggeredEnding = false;
-                        }
+                        lastBoolValue = ShouldSplit = hudManager.state == State.CREDITS && !lastBoolValue;
                         break;
                 }
 
@@ -166,7 +143,7 @@ namespace LiveSplit.Evergate {
                     splitLate = DateTime.MaxValue;
                 }
             }
-
+            PreviousState = hudManager.state;
             return;
         }
 

@@ -29,7 +29,7 @@ namespace LiveSplit.Evergate {
         private System.ComponentModel.BindingList<ISegment> segmentList;
         private Split oldSplit;
         private DateTime lastRemovedSplit;
-#if !Manager && Console
+#if Manager && Console
         public static void Main(string[] args) {
             Component component = new Component(new LiveSplitState());
             component.log.EnableLogging = true;
