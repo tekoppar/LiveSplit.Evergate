@@ -19,7 +19,7 @@ namespace LiveSplit.Evergate {
         public ComponentCategory Category { get { return ComponentCategory.Control; } }
         public IComponent Create(LiveSplitState state) { return new Component(state); }
         public string UpdateName { get { return this.ComponentName; } }
-        public string UpdateURL { get { return "https://raw.githubusercontent.com/ShootMe/LiveSplit.Evergate/master/"; } }
+        public string UpdateURL { get { return "https://raw.githubusercontent.com/tekoppar/LiveSplit.Evergate/main/"; } }
         public string XMLURL { get { return this.UpdateURL + "Components/Updates.xml"; } }
         public Version Version { get { return Assembly.GetExecutingAssembly().GetName().Version; } }
     }
