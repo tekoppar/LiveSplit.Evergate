@@ -6,7 +6,7 @@ using LiveSplit.Model;
 using LiveSplit.UI.Components;
 namespace LiveSplit.Evergate {
     public class Factory : IComponentFactory {
-        public static string AutosplitterName = "Ori Will of the Wisps Autosplitter";
+        public static string AutosplitterName = "Evergate Autosplitter";
         static Factory() {
             CultureInfo culture = CultureInfo.CreateSpecificCulture("en-US");
             CultureInfo.DefaultThreadCurrentCulture = culture;

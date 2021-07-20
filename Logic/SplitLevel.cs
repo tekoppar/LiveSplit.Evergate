@@ -155,8 +155,6 @@ namespace LiveSplit.Evergate {
         VW5,
         [Description("The Storm 6")]
         VW6,
-        [Description("The Storm 7")]
-        VW7,
     }
 
     public class LUT {

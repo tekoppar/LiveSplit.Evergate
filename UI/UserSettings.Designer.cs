@@ -95,6 +95,7 @@
             this.chkNoPause.Text = "No Pause";
             this.tooltips.SetToolTip(this.chkNoPause, "Will allow the game to run even when it doesn\'t have focus");
             this.chkNoPause.UseVisualStyleBackColor = true;
+            this.chkNoPause.Visible = false;
             // 
             // UserSettings
             // 

@@ -103,7 +103,7 @@ namespace LiveSplit.Evergate {
 
         private void CheckSplit(Split split, bool updateValues) {
             Paused = Memory.IsLoadingGame();
-            if (IsHooked() == false || Paused)
+            if (IsHooked() == false)// || Paused)
                 return;
 
             ShouldSplit = false;
@@ -114,7 +114,12 @@ namespace LiveSplit.Evergate {
                 ShouldSplit = !lastBoolValue && save.newGame && hudManager.state == State.MAIN_MENU;
                 lastBoolValue = save.newGame;
                 PreviousState = hudManager.state;
-            } else if (updateValues && !Paused && hudManager.state == State.IN_GAME) {
+            } else { 
+                if (!updateValues && (Paused && hudManager.state != State.IN_GAME)) {
+                    PreviousState = hudManager.state;
+                    return;
+                }
+
                 switch (split.Type) {
                     case SplitType.ManualSplit:
                         break;
@@ -196,12 +201,13 @@ namespace LiveSplit.Evergate {
             Dictionary<string, float> bestTimes = Memory.GetBestTimes();
 
             if (LUT.LevelLUT.ContainsKey((int)level) && bestTimes.ContainsKey(LUT.LevelLUT[(int)level]) == true) {
-                ShouldSplit = !lastBoolValue == true;
-                lastBoolValue = info.completed;
-            } else {
-                ShouldSplit = false;
-                lastBoolValue = false;
+                ShouldSplit = !lastBoolValue && lastBoolValue == false;
             }
+
+            if (level == SplitLevel.VW1 && CurrentScene == "prod-v1-1")
+                ShouldSplit = true;
+
+                lastBoolValue = info.completed;
         }
 
         private bool CheckHitbox(Vector4 hitbox) {
