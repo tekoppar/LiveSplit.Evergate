@@ -27,25 +27,65 @@ namespace LiveSplit.Evergate {
         }
 
         public float GetGameTime() {
-            //GameStateManager, Static, GameManager, GameTime
-            return MemoryReader.Read<float>(Program, GameAssembly.BaseAddress, 0x01989428, 0xb8, 0x28, 0x18, 0 + 0x28);
+            int gameStateManagerOffset = 0;
+
+            switch (MemoryManager.Version) {
+                case PointerVersion.All:
+                case PointerVersion.P1: gameStateManagerOffset = 0x01989428; break;
+                case PointerVersion.P2: gameStateManagerOffset = 0x01989488; break;
+            }
+            //GameStateManager, Static, GameManager, SceneName
+            return MemoryReader.Read<float>(Program, GameAssembly.BaseAddress, gameStateManagerOffset, 0xb8, 0x28, 0x18, 0 + 0x28);
         }
 
         public string GetSceneName() {
-            //GameStateManager, Static, GameManager, SceneName
-            return MemoryReader.ReadString(Program, GameAssembly.BaseAddress, 0x01989428, 0xb8, 0x28, 0x18, 0 + 0x10, 0x0);
+            int gameStateManagerOffset = 0;
+
+            switch (MemoryManager.Version) {
+                case PointerVersion.All:
+                case PointerVersion.P1: gameStateManagerOffset = 0x01989428; break;
+                case PointerVersion.P2: gameStateManagerOffset = 0x01989488; break;
+            }
+            //GameStateManager, Static, GameManager, GameTime
+            return MemoryReader.ReadString(Program, GameAssembly.BaseAddress, gameStateManagerOffset, 0xb8, 0x28, 0x18, 0 + 0x10, 0x0);
         }
 
         public bool IsPlayerPaused() {
-            return MemoryReader.Read<bool>(Program, GameAssembly.BaseAddress, 0x0199F7F0, 0xb8, 0x0);
+            //GameManager -> static_fields -> isPaused
+            int isPausedOffset = 0;
+
+            switch (MemoryManager.Version) {
+                case PointerVersion.All:
+                case PointerVersion.P1: isPausedOffset = 0x0199F7F0; break;
+                case PointerVersion.P2: isPausedOffset = 0x0199F850; break;
+            }
+
+            return MemoryReader.Read<bool>(Program, GameAssembly.BaseAddress, isPausedOffset, 0xb8, 0x0);
         }
 
         private IntPtr GetPlayerPtr() {
-            return MemoryReader.Read<IntPtr>(Program, GameAssembly.BaseAddress, 0x0198AD30, 0xb8, 0x0);
+            int playerOffset = 0;
+
+            switch (MemoryManager.Version) {
+                case PointerVersion.All:
+                case PointerVersion.P1: playerOffset = 0x0198AD30; break;
+                case PointerVersion.P2: playerOffset = 0x0198AD90; break;
+            }
+
+            //PlayerManager_2 -> static_fields -> player
+            return MemoryReader.Read<IntPtr>(Program, GameAssembly.BaseAddress, playerOffset, 0xb8, 0x0);
         }
 
         private IntPtr GetAbilityManagerPtr() {
-            return MemoryReader.Read<IntPtr>(Program, GameAssembly.BaseAddress, 0x01977758, 0xC8, 0x28, 0xB8, 0x8) + 0x1c0;
+            int schedulerOffset = 0;
+
+            switch (MemoryManager.Version) {
+                case PointerVersion.All:
+                case PointerVersion.P1: schedulerOffset = 0x01977758; break;
+                case PointerVersion.P2: schedulerOffset = 0x019777B8; break;
+            }
+
+            return MemoryReader.Read<IntPtr>(Program, GameAssembly.BaseAddress, schedulerOffset, 0xC8, 0x28, 0xB8, 0x8) + 0x1c0;
         }
 
         public int CanJump() {
@@ -56,7 +96,7 @@ namespace LiveSplit.Evergate {
         public PlayerScript GetPlayer() {
             IntPtr playerptr = GetPlayerPtr();
             PlayerScriptPtr ptr = Program.Read<PlayerScriptPtr>(playerptr, 0x0);
-            bool canJump = MemoryReader.Read<bool>(Program, GameAssembly.BaseAddress, 0x0198AD30, 0xb8, 0x8, 0x41);
+            //bool canJump = MemoryReader.Read<bool>(Program, GameAssembly.BaseAddress, 0x0198AD30, 0xb8, 0x8, 0x41);
             return new PlayerScript(ptr, CanJump() > 0);
         }
 
@@ -65,14 +105,30 @@ namespace LiveSplit.Evergate {
         }
 
         public GameStateManager GetGameStateManager() {
-            return MemoryReader.Read<GameStateManager>(Program, GameAssembly.BaseAddress, 0x01989428, 0xb8, 0x28, 0x0);
+            int gameStateManagerOffset = 0;
+
+            switch (MemoryManager.Version) {
+                case PointerVersion.All:
+                case PointerVersion.P1: gameStateManagerOffset = 0x01989428; break;
+                case PointerVersion.P2: gameStateManagerOffset = 0x01989488; break;
+            }
+
+            return MemoryReader.Read<GameStateManager>(Program, GameAssembly.BaseAddress, gameStateManagerOffset, 0xb8, 0x28, 0x0);
         }
 
         private IntPtr GetHUDManagerPtr() {
+            int loadingOverlayManagerOffset = 0;
+
+            switch (MemoryManager.Version) {
+                case PointerVersion.All:
+                case PointerVersion.P1: loadingOverlayManagerOffset = 0x01977268; break;
+                case PointerVersion.P2: loadingOverlayManagerOffset = 0x019772C8; break;
+            }
+
             //0xb8 have always so far offset into the static fields of the class
             //0xc8 im curious what this offsets into
             //LoadingOverlayManager -> ??? -> relative offset -> static fields -> singelton _instance -> HUDManager
-            return MemoryReader.Read<IntPtr>(Program, GameAssembly.BaseAddress, 0x01977268, 0xc8, 0x88, 0xb8, 0x8);
+            return MemoryReader.Read<IntPtr>(Program, GameAssembly.BaseAddress, loadingOverlayManagerOffset, 0xc8, 0x88, 0xb8, 0x8);
         }
 
         public HUDManager GetHUDManager() {
@@ -143,7 +199,15 @@ namespace LiveSplit.Evergate {
         }
 
         public List<string> GetVisitedLevels() {
-            IntPtr ptr = MemoryReader.Read<IntPtr>(Program, GameAssembly.BaseAddress, 0x01989428, 0xb8, 0x28, 0x18, 0x40);
+            int gameStateManagerOffset = 0;
+
+            switch (MemoryManager.Version) {
+                case PointerVersion.All:
+                case PointerVersion.P1: gameStateManagerOffset = 0x01989428; break;
+                case PointerVersion.P2: gameStateManagerOffset = 0x01989488; break;
+            }
+
+            IntPtr ptr = MemoryReader.Read<IntPtr>(Program, GameAssembly.BaseAddress, gameStateManagerOffset, 0xb8, 0x28, 0x18, 0x40);
             int count = MemoryReader.Read<int>(Program, ptr, 0x18, 0x18) * 2;
             IntPtr ptr1 = MemoryReader.Read<IntPtr>(Program, ptr, 0x18);
 
@@ -174,7 +238,15 @@ namespace LiveSplit.Evergate {
         }
 
         public Dictionary<string, float> GetBestTimes() {
-            IntPtr ptr = MemoryReader.Read<IntPtr>(Program, GameAssembly.BaseAddress, 0x01989428, 0xb8, 0x28, 0x18, 0x48);
+            int gameStateManagerOffset = 0;
+
+            switch (MemoryManager.Version) {
+                case PointerVersion.All:
+                case PointerVersion.P1: gameStateManagerOffset = 0x01989428; break;
+                case PointerVersion.P2: gameStateManagerOffset = 0x01989488; break;
+            }
+
+            IntPtr ptr = MemoryReader.Read<IntPtr>(Program, GameAssembly.BaseAddress, gameStateManagerOffset, 0xb8, 0x28, 0x18, 0x48);
             int count = MemoryReader.Read<int>(Program, ptr, 0x18, 0x18) * 3;
             IntPtr ptr1 = MemoryReader.Read<IntPtr>(Program, ptr, 0x18);
 
@@ -286,11 +358,11 @@ namespace LiveSplit.Evergate {
                     MemoryReader.Update64Bit(Program);
                     FindIl2Cpp.InitializeIl2Cpp(Program);
                     GameAssembly = Program.Module64("GameAssembly.dll");
-                    MemoryManager.Version = PointerVersion.All;
+                    MemoryManager.Version = PointerVersion.P1;
                     if (GameAssembly != null) {
                         switch (GameAssembly.MemorySize) {
                             case 77447168: MemoryManager.Version = PointerVersion.P1; break;
-                            case 77844480: MemoryManager.Version = PointerVersion.P2; break;
+                            case 27942912: MemoryManager.Version = PointerVersion.P2; break;
                             case 81121280: MemoryManager.Version = PointerVersion.P3; break;
                             case 81129472: MemoryManager.Version = PointerVersion.P4; break;
                         }
